@@ -17,8 +17,6 @@ function getRandomInt(max) {
 
 const anecdotesLength = anecdotes.length
 
-
-
 const Button = ({ handleClick, text }) => {
   return <button onClick={handleClick}>{text}</button>
 }
@@ -26,18 +24,27 @@ const Button = ({ handleClick, text }) => {
 const App = () => {
 
   const [selected, setSelected] = useState(0)
-
+  const [votes, setVotes] = useState(new Array(anecdotes.length).fill(0))
 
   const handleSelect = () => {
     const selectedIndex = getRandomInt(anecdotesLength)
     setSelected(selectedIndex)
   }
 
+  const handleVote = () => {
+    const newVote = [...votes]
+    newVote[selected] += 1
+    setVotes(newVote)
+
+  }
+
   return (
     <div>
       <p>{anecdotes[selected]}</p>
+      <p>has {votes[selected]} votes</p>
 
       <Button handleClick={handleSelect} text='next anecdote' />
+      <Button handleClick={handleVote} text='vote' />
     </div>
   )
 }
