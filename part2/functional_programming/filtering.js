@@ -10,3 +10,11 @@ const isCat = function(animals) {
 }
 
 var cats = animals.filter(isCat)
+
+const filterAnimals = function(animals, species) {
+    return animals.species === species
+}
+
+var dogs = filterAnimals(animals, 'dog')
+
+console.log(dogs)
